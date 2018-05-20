@@ -1,0 +1,45 @@
+"./FreeRTOSv9.0.0/MemMang/heap_2_c.obj"
+"./FreeRTOSv9.0.0/portable/portasm_s.obj"
+"./FreeRTOSv9.0.0/portable/port_c.obj"
+"./FreeRTOSv9.0.0/src/timers_c.obj"
+"./FreeRTOSv9.0.0/src/tasks_c.obj"
+"./FreeRTOSv9.0.0/src/queue_c.obj"
+"./FreeRTOSv9.0.0/src/list_c.obj"
+"./FreeRTOSv9.0.0/src/event_groups_c.obj"
+"./FreeRTOSv9.0.0/src/croutine_c.obj"
+"./Project_Settings/Startup_Code/__ppc_eabi_init_c.obj"
+"./Project_Settings/Startup_Code/MPC5604P_init_ram_c.obj"
+"./Project_Settings/Startup_Code/MPC5604P_Startup_c.obj"
+"./Project_Settings/Startup_Code/MPC5604P_HWInit_c.obj"
+"./Sources/main_c.obj"
+"./Sources/ivor_branch_table_c.obj"
+"./Sources/IntcInterrupts_c.obj"
+"./Sources/Exceptions_c.obj"
+-sym dwarf-2
+-sym full
+-msgstyle parseable
+-proc zen
+-big
+-fp soft
+-model absolute
+-abi eabi
+-sdata 8
+-sdata2 8
+-nostdlib
+-lcf
+"$(ProjDirPath)/Project_Settings/Linker_Files/MPC5604P_RAM.lcf"
+-m __startup
+-L"$(MCUToolsBaseDirEnv)/PA_Support/ewl/lib"
+-char unsigned
+-application
+-heapsize 32
+-stacksize 32
+-map
+-listclosure
+-mapunused
+-genbinary none
+-srec
+-sreclength 26
+-sreceol dos 
+-l"$(MCUToolsBaseDirEnv)/PA_Support/ewl/lib/libc_E200z0_VLE_Soft.a"
+-l"$(MCUToolsBaseDirEnv)/PA_Support/ewl/lib/librt_E200z0_VLE_Soft.a"

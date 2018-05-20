@@ -1,0 +1,96 @@
+// memory config file for MPC5604P
+reservedchar 0x21	// display '!' for invalid reads
+
+//Code Flash Array 0
+//range		0x00000000 0x0007ffff 4 ReadWrite
+reserved	0x00080000 0x001fffff
+
+//Code Flash Array 0 Shadow Sector
+//range		0x00200000 0x00203FFF 4 ReadWrite
+reserved	0x00204000 0x003FFFFF
+
+//Code Flash Array 0 Test Sector
+//range		0x00400000 0x00403FFF 4 ReadWrite
+reserved	0x00404000 0x007FFFFF
+
+//Data Flash Array 0
+//range		0x00800000 0x0080FFFF 4 ReadWrite
+reserved	0x00810000 0x00BFFFFF
+
+//Data Flash Array 0 Test Sector
+//range		0x00C00000 0x00C03FFF 4 ReadWrite
+reserved	0x00C04000 0x00FFFFFF
+
+//Flash Emulation Mapping
+//range		0x01000000 0x1FFFFFFF 4 ReadWrite
+reserved	0x20000000 0x3FFFFFFF
+
+//SRAM
+//range		0x40000000 0x40009FFF 4 ReadWrite
+reserved	0x4000A000 0xC3F87FFF
+
+//ON-CHIP peripherals
+
+// Code Flash 0 Configuration (CFLASH0), Data Flash 0 Configuration (DFLASH0), System Integration Unit Lite (SIUL), WakeUp Unit (WKUP)
+//range		0xC3F88000 0xC3F97FFF 4 ReadWrite
+reserved	0xC3F98000 0xC3FD7FFF
+
+//System Status and Configuration Module (SSCM), Mode Entry module (ME), Clock Generation Module (CGM, XOSC, IRC, FMPLL_0, FMPLL_1, CMU0, CMU1), Reset Generation Module (RGM), Power Control Unit (PCU)
+//range		0xC3FD8000 0xC3FEBFFF 4 ReadWrite
+reserved	0xC3FEC000	0xC3FEFFFF
+
+//Periodic Interrupt Timer (PIT)
+//range		0xC3FF0000 0xC3FF3FFF 4 ReadWrite
+reserved	0xC3FF4000 0xFFDFFFFF
+
+//Analog to Digital Converter 0 (ADC0), Analog to Digital Converter 1 (ADC1)
+//range		0xFFE04000 0xFFE07FFF 4 ReadWrite
+reserved	0xFFE08000 0xFFE0BFFF
+
+//CTU_0
+//range		0xFFE0C000 0xFFE0FFFF 4 ReadWrite
+reserved	0xFFE10000 0xFFE17FFF
+
+//eTimer_0, eTimer_1
+//range		0xFFE18000 0xFFE1FFFF 4 ReadWrite
+reserved	0xFFE20000 0xFFE23FFF
+
+//FlexPWM_0
+//range		0xFFE24000 0xFFE27FFF 4 ReadWrite
+reserved	0xFFE28000 0xFFE3FFFF
+
+//LIN FLEX 0, LIN FLEX 1
+//range		0xFFE40000 0xFFE47FFF 4 ReadWrite
+reserved	0xFFE50000 0xFFE67FFF
+
+//Cyclic Redundancy Check (CRC), Fault Collection Unit (FCU)
+//range		0xFFE68000 0xFFE6FFFF 4 ReadWrite
+reserved	0xFFE70000 0xFFE7FFFF
+
+//Mirrored (range 0xC3F8_0000 - 0xC3FF_FFFF)
+range		0xFFE80000 0xFFEFFFFF 4 Readwrite
+reserved	0xFFF00000 0xFFF37FFF
+
+//Software Watchdog (SWT0), System Timer Module (STM0), Error Correction Status Module (ECSM), Direct Memory Access Controller (eDMA), Interrupt Controller (INTC)
+//range		0xFFF38000 0xFFF4BFFF 4 ReadWrite
+reserved	0xFFF4C000 0xFFF8FFFF
+
+//DSPI 0, DSPI 1, DSPI 2, DSPI 3
+//range		0xFFF90000 0xFFF9FFFF 4 ReadWrite
+reserved	0xFFFA0000 0xFFFBFFFF
+
+//FlexCAN 0 (CAN0)
+//range		0xFFFC0000 0xFFFC3FFF 4 ReadWrite
+reserved	0xFFFC4000 0xFFFDBFFF
+
+//DMA Multiplexer (DMA_MUX), FlexRay Controller (FlexRay)
+//range		0xFFFDC000 0xFFFE3FFF 4 ReadWrite
+reserved	0xFFFE4000 0xFFFE7FFF
+
+//Safety Port (FlexCAN)
+//range		0xFFFE8000 0xFFFEBFFF 4 ReadWrite
+reserved	0xFFFEC000 0xFFFFBFFF
+
+//Boot Assist Module (BAM)
+//range		0xFFFFC000 0xFFFFFFFF	4 ReadWrite
+
