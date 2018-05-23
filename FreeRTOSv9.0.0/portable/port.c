@@ -66,11 +66,6 @@
     the SafeRTOS brand: http://www.SafeRTOS.com.
 */
 
-/*
- * (C) Copyright 2013
- * Promwad Innovation Company <www.promwad.com>
- * Written-by: Vladimir Trubilov <vladimir.trubilov@promwad.com>
- */
 
 #include "MPC5604P.h"
 #include "Exceptions.h"
@@ -119,64 +114,6 @@ void vPortTickISR(void);
  }
 portSTACK_TYPE *pxPortInitialiseStack( portSTACK_TYPE *pxTopOfStack, pdTASK_CODE pxCode, void *pvParameters )
 {
-#if 0
-    register portSTACK_TYPE msr, srr1;
-    msr = GetMSR();
-    srr1 = msr | (1 << 15); // External interrupt enable
-
-    pxTopOfStack -= 8; // leave space for compiler
-
-    *--pxTopOfStack = 0;                                                        /* XER */
-    *--pxTopOfStack = 0;                                                        /* CTR */
-    *--pxTopOfStack = ( portSTACK_TYPE ) pxCode;                                /* LR  */
-    *--pxTopOfStack = 0;                                                        /* CR  */
-
-    *--pxTopOfStack = 0x31L;                                                    /* r31 */
-    *--pxTopOfStack = 0x30L;                                                    /* r30 */
-    *--pxTopOfStack = 0x29L;                                                    /* r29 */
-    *--pxTopOfStack = 0x28L;                                                    /* r28 */
-    *--pxTopOfStack = 0x27L;                                                    /* r27 */
-    *--pxTopOfStack = 0x26L;                                                    /* r26 */
-    *--pxTopOfStack = 0x25L;                                                    /* r25 */
-    *--pxTopOfStack = 0x24L;                                                    /* r24 */
-    *--pxTopOfStack = 0x23L;                                                    /* r23 */
-    *--pxTopOfStack = 0x22L;                                                    /* r22 */
-    *--pxTopOfStack = 0x21L;                                                    /* r21 */
-    *--pxTopOfStack = 0x20L;                                                    /* r20 */
-    *--pxTopOfStack = 0x19L;                                                    /* r19 */
-    *--pxTopOfStack = 0x18L;                                                    /* r18 */
-    *--pxTopOfStack = 0x17L;                                                    /* r17 */
-    *--pxTopOfStack = 0x16L;                                                    /* r16 */
-    *--pxTopOfStack = 0x15L;                                                    /* r15 */
-    *--pxTopOfStack = 0x14L;                                                    /* r14 */
-    *--pxTopOfStack = ( portSTACK_TYPE )_SDA_BASE_;                            /* r13 */
-    *--pxTopOfStack = 0x12L;                                                    /* r12 */
-    *--pxTopOfStack = 0x11L;                                                    /* r11 */
-    *--pxTopOfStack = 0x10L;                                                    /* r10 */
-    *--pxTopOfStack = 0x9L;                                                     /* r09 */
-    *--pxTopOfStack = 0x8L;                                                     /* r08 */
-    *--pxTopOfStack = 0x7L;                                                     /* r07 */
-    *--pxTopOfStack = 0x6L;                                                     /* r06 */
-    *--pxTopOfStack = 0x5L;                                                     /* r05 */
-    *--pxTopOfStack = 0x4L;                                                     /* r04 */
-    *--pxTopOfStack = ( portSTACK_TYPE ) pvParameters;                          /* r03 */
-    *--pxTopOfStack = ( portSTACK_TYPE )_SDA2_BASE_;                            /* r02 */
-    *--pxTopOfStack = 0x1L;                                                     /* r01 */
-    *--pxTopOfStack = 0x0L;                                                     /* r00 */
-
-    *--pxTopOfStack = srr1;                                                     /* SRR1  */
-    *--pxTopOfStack = ( portSTACK_TYPE ) pxCode;                                /* SRR0 */
-    
-
-    *--pxTopOfStack = msr;                                                      /* MSR */
-
-    pxTopOfStack -= 8; // reserved area
-    *pxTopOfStack = 0xBADABADA;
-
-    return pxTopOfStack;
-#endif
-    
-#if 1
       register portSTACK_TYPE msr, srr1;
       portSTACK_TYPE *pxBackchain;
 
@@ -293,13 +230,12 @@ portSTACK_TYPE *pxPortInitialiseStack( portSTACK_TYPE *pxTopOfStack, pdTASK_CODE
       *pxTopOfStack = ( portSTACK_TYPE ) pxBackchain;                           /* SP(r1) - 0x00 */
 
       return pxTopOfStack;   
-#endif
+
 }
 /*-----------------------------------------------------------*/
 
 portBASE_TYPE xPortStartScheduler( void )
 {
-    /*****³õÊ¼»¯¿ØÖÆ****/
     EXCEP_InitExceptionHandlers();
     INTC_InitINTCInterrupts();
     INTC.CPR.B.PRI = 0;
